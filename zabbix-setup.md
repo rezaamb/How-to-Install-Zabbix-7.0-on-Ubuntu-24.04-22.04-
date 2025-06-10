@@ -52,11 +52,11 @@ mysql> set global log_bin_trust_function_creators = 1;
 mysql> quit;
 ```
 
-##  import initial schema and data.
+##  Step 4: import initial schema and data.
 ```bash
 zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
 ```
-## Disable log_bin_trust_function_creators option after importing database schema.
+## Step 5: Disable log_bin_trust_function_creators option after importing database schema.
 ```bash
 mysql -uroot -p
 password
@@ -64,14 +64,14 @@ mysql> set global log_bin_trust_function_creators = 0;
 mysql> quit;
 ```
 
-## Configure the database for Zabbix server
+## Step 6: Configure the database for Zabbix server
 ```
 vim /etc/zabbix/zabbix_server.conf
 DBPassword=password
 ```
 
 
-## Step 4: Configure firewall
+## Step 7: Configure firewall
 If you have a UFW firewall installed on Ubuntu, use these commands to open TCP ports: 10050 (agent), 10051 (server), and 80 (frontend):
 ```bash
 apt install ufw -y
@@ -82,17 +82,17 @@ ufw allow 10051/tcp
 ufw allow 80/tcp
 ufw reload
 ```
-## Start Zabbix server and agent processes
-### Start Zabbix server and agent processes and make it start at system boot.
+
+###  Step 8: Start Zabbix server and agent processes and make it start at system boot.
 ```bash
 systemctl restart zabbix-server zabbix-agent apache2
 systemctl enable zabbix-server zabbix-agent apache2
 ```
 
-# Connect to your newly installed Zabbix frontend using URL ```“http://server_ip_or_dns_name/zabbix”```
+##  Step 9: Connect to your newly installed Zabbix frontend using URL ```“http://server_ip_or_dns_name/zabbix”```
 ![image](https://github.com/user-attachments/assets/db09874d-9894-4e6d-a668-12a8fd5277ee)
 
-### if you get the error “zabbix Locale for language “en_US” is not found on the web server. Tried to set: en_US, en_US.utf8, en_US.UTF-8, en_US.iso885915, en_US.ISO8859-1” then use this command to fix it:
+## Step 10: if you get the error “zabbix Locale for language “en_US” is not found on the web server. Tried to set: en_US, en_US.utf8, en_US.UTF-8, en_US.iso885915, en_US.ISO8859-1” then use this command to fix it:
 ```
 apt-get install -y locales && echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen && service apache2 restart
 ```
@@ -103,13 +103,13 @@ apt-get install -y locales && echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && loc
 ![image](https://github.com/user-attachments/assets/3226b474-892a-41cf-8c8f-952695e1c1c8)
 
 
-## Step 6: Login to frontend using Zabbix default login credentials
+## Step 11: Login to frontend using Zabbix default login credentials
 Use Zabbix default admin username “Admin” and password “zabbix” (without quotes) to login to Zabbix frontend at URL “http://server_ip_or_dns_name/zabbix” via your browser.
 
 ![image](https://github.com/user-attachments/assets/fd42a7dc-0544-40aa-a15f-f6bf22340c2e)
 
 
-## Step 7: Optimizing Zabbix Server (optional)
+## Step 12: Optimizing Zabbix Server (optional)
 
 Don’t bother with this optimization if you are monitoring a small number of devices, but if you are planning to monitor a large number of devices then continue with this step.
 
@@ -129,7 +129,7 @@ ValueCacheSize=256M
 ```
 
 
-## Update Zabbix server (or Proxy) configuration file
+##  Step 13: Update Zabbix server (or Proxy) configuration file
 Note: In case of Zabbix proxy, follow similar steps: edit ```‘zabbix_proxy.conf’``` and restart the ```‘zabbix-proxy’``` service
 
 You need to configure Zabbix server for VMware monitoring. Open zabbix_server.conf file with command: ```“vim /etc/zabbix/zabbix_server.conf”``` and add these VMware parameters anywhere in the file:
