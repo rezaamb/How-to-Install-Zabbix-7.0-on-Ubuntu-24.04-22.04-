@@ -1,4 +1,4 @@
-##Step 1: Install Zabbix server, frontend, and agent
+## Step 1: Install Zabbix server, frontend, and agent
 `Install Zabbix .deb package on your Ubuntu OS (24.04, 22.04, 20.04, 18.04 and 16.04 are supported).`
 
 ```bash
