@@ -111,12 +111,10 @@ Use Zabbix default admin username “Admin” and password “zabbix” (without
 
 ## Step 7: Optimizing Zabbix Server (optional)
 
-
-Step 7: Optimizing Zabbix Server (optional)
 Don’t bother with this optimization if you are monitoring a small number of devices, but if you are planning to monitor a large number of devices then continue with this step.
 
-Open “zabbix_server.conf” file with command: “sudo nano /etc/zabbix/zabbix_server.conf” and add this configuration anywhere in file:
-
+Open “zabbix_server.conf” file with command: ```“sudo vim /etc/zabbix/zabbix_server.conf”``` and add this configuration anywhere in file:
+```
 StartPollers=100
 StartPollersUnreachable=50
 StartPingers=50
@@ -128,20 +126,20 @@ HistoryCacheSize=64M
 HistoryIndexCacheSize=32M
 TrendCacheSize=32M
 ValueCacheSize=256M
+```
 
 
+## Update Zabbix server (or Proxy) configuration file
+Note: In case of Zabbix proxy, follow similar steps: edit ```‘zabbix_proxy.conf’``` and restart the ```‘zabbix-proxy’``` service
 
-Update Zabbix server (or Proxy) configuration file
-Note: In case of Zabbix proxy, follow similar steps: edit ‘zabbix_proxy.conf’ and restart the ‘zabbix-proxy’ service
-
-You need to configure Zabbix server for VMware monitoring. Open zabbix_server.conf file with command: “nano /etc/zabbix/zabbix_server.conf” and add these VMware parameters anywhere in the file:
-
+You need to configure Zabbix server for VMware monitoring. Open zabbix_server.conf file with command: ```“vim /etc/zabbix/zabbix_server.conf”``` and add these VMware parameters anywhere in the file:
+```
 StartVMwareCollectors=3
 VMwareFrequency=60
 VMwarePerfFrequency=60
 VMwareCacheSize=32M
 VMwareTimeout=120
-
+```
 
 
 
