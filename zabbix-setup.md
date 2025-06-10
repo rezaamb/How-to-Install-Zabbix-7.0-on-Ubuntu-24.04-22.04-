@@ -39,3 +39,39 @@ Disallow root login remotely: Choose Y.
 Remove test database: Choose Y.
 Reload privilege tables: Choose Y.
 ```
+
+## Step 3: Verify MySQL Installation
+```bash
+mysql -uroot -p
+password
+mysql> create database zabbix character set utf8mb4 collate utf8mb4_bin;
+mysql> create user zabbix@localhost identified by 'password';
+mysql> grant all privileges on zabbix.* to zabbix@localhost;
+mysql> flush privileges
+mysql> set global log_bin_trust_function_creators = 1;
+mysql> quit;
+```
+
+##  import initial schema and data.
+```bash
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
+```
+## Disable log_bin_trust_function_creators option after importing database schema.
+```bash
+mysql -uroot -p
+password
+mysql> set global log_bin_trust_function_creators = 0;
+mysql> quit;
+```
+
+## Configure the database for Zabbix server
+```
+vim /etc/zabbix/zabbix_server.conf
+DBPassword=password
+```
+## Start Zabbix server and agent processes
+### Start Zabbix server and agent processes and make it start at system boot.
+```bash
+systemctl restart zabbix-server zabbix-agent apache2
+systemctl enable zabbix-server zabbix-agent apache2
+```
