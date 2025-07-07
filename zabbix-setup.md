@@ -141,5 +141,7 @@ VMwareCacheSize=32M
 VMwareTimeout=120
 ```
 
+##  Step 14:How to set vmware user password and url on zabbix 
+![how_to_set_vmware_api_user_password_and_url_on_zabbix](https://github.com/user-attachments/assets/923dbb9a-3809-40aa-a1d2-ebc69f925f13)
 
 
