@@ -119,6 +119,7 @@ Use Zabbix default admin username “Admin” and password “zabbix” (without
 
 ![image](https://github.com/user-attachments/assets/fd42a7dc-0544-40aa-a15f-f6bf22340c2e)
 
+and then you can change the PASSWORD in UI : Users Tab > Users > Change Password
 
 ## Step 12: Optimizing Zabbix Server (optional)
 
@@ -141,9 +142,10 @@ ValueCacheSize=256M
 
 
 ##  Step 13: Update Zabbix server (or Proxy) configuration file
-Note: In case of Zabbix proxy, follow similar steps: edit ```‘zabbix_proxy.conf’``` and restart the ```‘zabbix-proxy’``` service
+Note: In case of Zabbix proxy, follow similar steps: edit ```zabbix_proxy.conf``` and restart the ```zabbix-proxy``` service
 
-You need to configure Zabbix server for VMware monitoring. Open zabbix_server.conf file with command: ```“vim /etc/zabbix/zabbix_server.conf”``` and add these VMware parameters anywhere in the file:
+You need to configure Zabbix server for VMware monitoring. Open zabbix_server.conf file with command:
+```“vim /etc/zabbix/zabbix_server.conf”``` and add these VMware parameters anywhere in the file:
 ```
 StartVMwareCollectors=3
 VMwareFrequency=60
