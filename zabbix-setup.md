@@ -39,7 +39,10 @@ Disallow root login remotely: Choose Y.
 Remove test database: Choose Y.
 Reload privilege tables: Choose Y.
 ```
-
+```bash
+sudo chown -R mysql:mysql /var/lib/mysql
+sudo chmod 750 /var/lib/mysql
+```
 ## Step 3: Verify MySQL Installation
 ```bash
 mysql -uroot -p
