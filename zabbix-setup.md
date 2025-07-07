@@ -39,6 +39,14 @@ Disallow root login remotely: Choose Y.
 Remove test database: Choose Y.
 Reload privilege tables: Choose Y.
 ```
+### or do this command instead of secure installation :
+```bash
+mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Far@1404!2025';
+FLUSH PRIVILEGES;
+exit;
+```
+these 2 commands are for PREMISSIONS :
 ```bash
 sudo chown -R mysql:mysql /var/lib/mysql
 sudo chmod 750 /var/lib/mysql
